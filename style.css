@@ -1,0 +1,718 @@
+/* General Styling */
+html{
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, 
+        var(--bg-gradient-1),
+        var(--bg-gradient-2),
+        var(--bg-gradient-3),
+        var(--bg-gradient-4)
+    );
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    cursor: none !important; /* Force hide cursor */
+}
+
+/* Add this new animation keyframes section */
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Container Styling */
+.container {
+    background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 25px var(--shadow-color);
+    width: 500px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    margin: 20px auto;
+}
+
+h2 {
+    color: var(--text-color);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 2px solid var(--input-border);
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background: var(--input-bg);
+    cursor: none !important;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0px 0px 10px rgba(79, 172, 254, 0.3);
+}
+
+/* Button Styling */
+button {
+    background: linear-gradient(to right, #32cd32, #228b22);
+    color: white;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s;
+    cursor: none !important;
+}
+
+button:hover {
+    background: linear-gradient(to right, #228b22, #006400);
+    transform: scale(1.05);
+}
+
+/* Final Price Display */
+h3 {
+    margin-top: 15px;
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+#finalPrice {
+    color: #00796b;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+/* Header Styling */
+header {
+    background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    color: var(--text-color);
+    padding: 1rem 0;
+    text-align: center;
+    width: 100%;
+    position: static;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+header p {
+    margin: 5px 0 0;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Enhanced Header Styling */
+header nav {
+    margin-top: 10px;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header nav ul li a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+header nav ul li a:hover {
+    color: var(--hover-color);
+    opacity: 1;
+}
+
+/* Footer Styling */
+footer {
+    background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    color: var(--text-color);
+    padding: 1rem 0;
+    text-align: center;
+    width: 100%;
+    position: static;
+    margin-top: auto;
+    box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.footer-section {
+    flex: 1;
+    text-align: left;
+    padding: 0 15px;
+}
+
+.footer-section h4 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 5px;
+}
+
+.footer-section ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: var(--hover-color);
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    header p {
+        font-size: 0.9rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-section {
+        margin-bottom: 20px;
+    }
+    
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Helper Bot Styling */
+#helper-bot {
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.1s linear; /* Faster, more direct movement */
+    position: fixed;
+    transform: translate(-50%, -50%);
+}
+
+.bot-body {
+    width: 50px;  /* Increase size */
+    height: 50px;
+    background: #ffffff; /* Solid white */
+    border: 2px solid var(--accent-color); /* More visible border */
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.bot-eyes {
+    display: flex;
+    gap: 8px;
+    position: relative;  /* Added position */
+    z-index: 2;         /* Added z-index */
+}
+
+.eye {
+    width: 10px;
+    height: 10px;
+    background: var(--accent-color); /* Match gradient colors */
+    border-radius: 50%;
+    position: relative;
+}
+
+.bot-antenna {
+    position: absolute;
+    top: -8px;
+    left: 50%;          /* Center the antenna */
+    transform: translateX(-50%);
+    width: 4px;
+    height: 12px;
+    background: var(--accent-color);
+    border-radius: 2px;
+    transform-origin: bottom;
+    animation: antenna 2s ease-in-out infinite;
+}
+
+.bot-message {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    border: 1px solid var(--accent-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes antenna {
+    0%, 100% { transform: rotate(0); }
+    50% { transform: rotate(15deg); }
+}
+
+/* Remove the hover effect that was causing issues */
+button:hover ~ #helper-bot .bot-message,
+input:hover ~ #helper-bot .bot-message {
+    opacity: 0;  /* Remove this as it's handled by JavaScript */
+}
+
+/* Add error message styling */
+.error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    height: 18px;
+    margin-bottom: 5px;
+}
+
+input.invalid {
+    border-color: #e74c3c;
+    box-shadow: 0 0 5px rgba(231, 76, 60, 0.3);
+}
+
+button:disabled {
+    background: linear-gradient(to right, #95a5a6, #7f8c8d);
+    cursor: not-allowed;
+    transform: none;
+}
+
+button:disabled:hover {
+    background: linear-gradient(to right, #95a5a6, #7f8c8d);
+}
+
+/* Price Breakdown Styling */
+.price-breakdown {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.breakdown-toggle {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 10px 0;
+    width: auto;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.breakdown-toggle:hover {
+    color: var(--hover-color);
+    transform: none;
+}
+
+.breakdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: var(--card-bg);
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.breakdown-content.show {
+    max-height: 400px;
+    padding: 15px;
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.breakdown-item:last-child {
+    border-bottom: none;
+    font-weight: bold;
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 2px solid var(--border-color);
+}
+
+.breakdown-item.discount span:last-child {
+    color: #e74c3c;
+}
+
+.breakdown-item.profit span:last-child {
+    color: #27ae60;
+}
+
+.breakdown-item.total {
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+/* Add Currency Select Styling */
+select {
+    width: 95%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 2px solid var(--input-border);
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background: var(--input-bg);
+    cursor: none !important;
+    color: var(--text-color);
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0px 0px 10px rgba(79, 172, 254, 0.3);
+}
+
+/* Add currency symbol to price displays */
+.currency-symbol {
+    font-size: 0.8em;
+    opacity: 0.7;
+    margin-right: 2px;
+}
+
+/* Saved Calculations Styling */
+.saved-calculations {
+    margin-top: 30px;
+    border-top: 2px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.save-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.save-controls input {
+    flex: 1;
+    margin: 0;
+}
+
+.save-btn {
+    width: auto;
+    margin: 0;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+.saved-list {
+    text-align: left;
+}
+
+.saved-list h4 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.saved-calculation {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.saved-calculation:hover {
+    transform: translateX(5px);
+}
+
+.saved-calculation-info {
+    flex: 1;
+}
+
+.saved-calculation-name {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.saved-calculation-price {
+    color: #00796b;
+    font-size: 0.9em;
+}
+
+.saved-calculation-date {
+    color: #666;
+    font-size: 0.8em;
+}
+
+.saved-calculation-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.load-btn, .delete-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+}
+
+.load-btn {
+    background: var(--accent-color);
+    color: white;
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.load-btn:hover, .delete-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Add CSS Variables for theming */
+:root {
+    /* Light theme (default) */
+    --bg-gradient-1: #FF9A9E;
+    --bg-gradient-2: #FAD0C4;
+    --bg-gradient-3: #A1C4FD;
+    --bg-gradient-4: #C2E9FB;
+    --text-color: #333;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --input-border: #ddd;
+    --input-bg: white;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --hover-color: #FF9A9E;
+    --accent-color: #4facfe;
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    /* Dark theme */
+    --bg-gradient-1: #2c3e50;
+    --bg-gradient-2: #3498db;
+    --bg-gradient-3: #2980b9;
+    --bg-gradient-4: #2c3e50;
+    --text-color: #e0e0e0;
+    --card-bg: rgba(44, 62, 80, 0.85);
+    --input-border: #456;
+    --input-bg: #34495e;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --hover-color: #3498db;
+    --accent-color: #00f2fe;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Add transition for smooth theme switching */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Theme Toggle Button Styling */
+.theme-toggle {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+#themeToggle {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg);
+    box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+#themeToggle:hover {
+    transform: scale(1.1);
+}
+
+#themeToggle .moon {
+    display: none;
+}
+
+[data-theme="dark"] #themeToggle .sun {
+    display: none;
+}
+
+[data-theme="dark"] #themeToggle .moon {
+    display: inline;
+}
+
+/* Dark mode specific adjustments */
+[data-theme="dark"] input::placeholder {
+    color: #888;
+}
+
+[data-theme="dark"] .breakdown-item.total {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .saved-calculation-name {
+    color: var(--text-color);
+}
+
+/* Export Controls Styling */
+.export-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.export-btn {
+    width: auto;
+    padding: 10px 20px;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+
+.export-btn.pdf {
+    background: linear-gradient(to right, #e74c3c, #c0392b);
+}
+
+.export-btn.csv {
+    background: linear-gradient(to right, #27ae60, #219a52);
+}
+
+.export-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .export-btn {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Charts Styling */
+.charts-container {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.chart-wrapper {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    width: calc(50% - 10px);
+    min-width: 300px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .chart-wrapper {
+    background: rgba(44, 62, 80, 0.95);
+}
+
+@media (max-width: 768px) {
+    .chart-wrapper {
+        width: 100%;
+    }
+}
+
+/* Hide cursor on interactive elements but keep functionality */
+button, input, select, a {
+    cursor: none !important;
+}
+
+/* Add styling for hidden elements */
+.hidden {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+/* Style for showing elements */
+.visible {
+    display: block;
+    opacity: 1;
+}

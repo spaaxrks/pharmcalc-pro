@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Price Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="helper-bot">
+        <div class="bot-body">
+            <div class="bot-eyes">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+            </div>
+            <div class="bot-antenna"></div>
+        </div>
+        <div class="bot-message">Hello! 👋</div>
+    </div>
+    <header>
+        <div class="header-content">
+            <h1>PharmCalc Pro</h1>
+            <p>Professional Pharmaceutical Price Calculator</p>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#foot">About</a></li>
+                    <li><a href="#foot">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="theme-toggle">
+                <button id="themeToggle" onclick="toggleTheme()">
+                    <span class="sun">☀️</span>
+                    <span class="moon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Pharma Price Calculator</h2>
+
+        <label>Product Name:</label>
+        <input type="text" id="productName" placeholder="Enter product name">
+        <div class="error-message" id="productNameError"></div>
+
+        <label>Currency:</label>
+        <select id="currencySelect" onchange="updateCurrency()">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="JPY">JPY (¥)</option>
+            <option value="AUD">AUD (A$)</option>
+        </select>
+
+        <label for="rawCost">Raw Material Cost ($):</label>
+        <input type="number" id="rawCost" placeholder="Enter cost">
+        <div class="error-message" id="rawCostError"></div>
+
+        <label for="productionCost">Production Cost ($):</label>
+        <input type="number" id="productionCost" placeholder="Enter cost">
+        <div class="error-message" id="productionCostError"></div>
+
+        <label for="packagingCost">Packaging Cost ($):</label>
+        <input type="number" id="packagingCost" placeholder="Enter cost">
+        <div class="error-message" id="packagingCostError"></div>
+
+        <label>Discount (%):</label>
+        <input type="number" id="discountPercent" placeholder="Enter discount %">
+        <div class="error-message" id="discountPercentError"></div>
+
+        <label>Tax (%):</label>
+        <input type="number" id="taxPercent" placeholder="Enter tax %">
+        <div class="error-message" id="taxPercentError"></div>
+
+        <label>Profit Margin (%):</label>
+        <input type="number" id="profitMargin" placeholder="Enter margin %">
+        <div class="error-message" id="profitMarginError"></div>
+
+        <button onclick="calculatePrice()">Calculate Price</button>
+
+        <h3>Final Price: $<span id="finalPrice">0.00</span></h3>
+
+        <div class="price-breakdown hidden" id="priceBreakdownSection">
+            <button type="button" class="breakdown-toggle" onclick="toggleBreakdown()">
+                Show Price Breakdown ▼
+            </button>
+            <div class="breakdown-content" id="breakdownContent">
+                <div class="breakdown-item">
+                    <span>Raw Material Cost:</span>
+                    <span id="breakdownRaw">$0.00</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>Production Cost:</span>
+                    <span id="breakdownProduction">$0.00</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>Packaging Cost:</span>
+                    <span id="breakdownPackaging">$0.00</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>Base Total:</span>
+                    <span id="breakdownBase">$0.00</span>
+                </div>
+                <div class="breakdown-item discount">
+                    <span>Discount:</span>
+                    <span id="breakdownDiscount">-$0.00</span>
+                </div>
+                <div class="breakdown-item">
+                    <span>Tax:</span>
+                    <span id="breakdownTax">$0.00</span>
+                </div>
+                <div class="breakdown-item profit">
+                    <span>Profit Margin:</span>
+                    <span id="breakdownProfit">$0.00</span>
+                </div>
+                <div class="breakdown-item total">
+                    <span>Final Price:</span>
+                    <span id="breakdownTotal">$0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="charts-container hidden" id="chartsSection">
+            <div class="chart-wrapper">
+                <canvas id="costDistributionChart"></canvas>
+            </div>
+            <div class="chart-wrapper">
+                <canvas id="calculationBreakdownChart"></canvas>
+            </div>
+        </div>
+
+        <div class="export-controls hidden" id="exportSection">
+            <button type="button" onclick="exportToPDF()" class="export-btn pdf">
+                Export as PDF 📄
+            </button>
+            <button type="button" onclick="exportToCSV()" class="export-btn csv">
+                Export as CSV 📊
+            </button>
+        </div>
+
+        <div class="saved-calculations">
+            <div class="save-controls">
+                <input type="text" id="saveName" placeholder="Name this calculation">
+                <button type="button" onclick="saveCalculation()" class="save-btn">
+                    Save Calculation
+                </button>
+            </div>
+            
+            <div class="saved-list">
+                <h4>Saved Calculations</h4>
+                <div id="savedCalculationsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content" id="foot">
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Email: info@pharmcalc.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Use</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <p>&copy; 2024 PharmCalc Pro. All rights reserved.</p>
+                <p>A professional tool for pharmaceutical pricing calculations</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
